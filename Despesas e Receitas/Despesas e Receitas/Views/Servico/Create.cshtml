@@ -1,0 +1,67 @@
+﻿@model Despesas_e_Receitas.Models.Servico
+
+@{
+    ViewData["Title"] = "CRIAR - Receitas e Despesas";
+}
+
+<h1 class="mt-4 mb-4">@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input name="inId" type="text" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input name="inNome" type="text" class="form-control" required />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input name="inDescricao" type="text" class="form-control" required />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Categoria" class="control-label"></label>
+                <select name="inCategoria" class="form-control form-select">
+
+                    <option value='D'>DESPESA</option>
+                    <option value='R'>RECEITA</option>
+
+                </select>
+
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valor" class="control-label"></label>
+                <input name="inValor" type="number" step=".01" class="form-control" required />
+                <span asp-validation-for="Valor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CapexOpex" class="control-label"></label>
+                <select name="inCapexOpex" class="form-control form-select">
+
+                    <option value='O'>Custo de Operação</option>
+                    <option value='C'>Custo de Capital</option>
+                    <option value='N'>Nenhum</option>
+
+                </select>
+                <span asp-validation-for="CapexOpex" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <button class="btn btn-primary" asp-action="Save">Salvar</button>
+                <a class="btn btn-secondary ms-3" asp-action="Cancel">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

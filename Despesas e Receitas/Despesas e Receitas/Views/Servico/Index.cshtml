@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Despesas_e_Receitas.Models.Servico>
+
+@{
+    ViewData["Title"] = "Receitas e Despesas";
+}
+
+<h1 class="mt-4 mb-4">@ViewData["Title"]</h1>
+
+<div class="d-flex flex-row">
+    <div class="w-50">
+        <a asp-action="Create" class="btn btn-primary mt-3">Adicionar Receitas e Despesas</a>
+    </div>
+    <div class="w-50">
+        <form class="d-flex" role="search">
+            <input name="inFiltro" class="form-control me-2" type="search" aria-label="Search">
+            <button class="btn btn-outline-success" asp-controller="Servico" asp-action="Filter">Filtrar</button>
+        </form>
+    </div>
+
+</div>
+
+<table class="table table-striped mt-3">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CapexOpex)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CapexOpex)
+                </td>
+                <td>
+                    <a class="text-decoration-none text-warning" asp-controller="Servico" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                </td>
+                <td>
+                    <a class="text-decoration-none text-danger" asp-controller="Servico" asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
